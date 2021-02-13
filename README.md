@@ -23,6 +23,21 @@ FireCloud method: [vanallenlab/facets](https://portal.firecloud.org/#methods/van
 ## Task details
 
 ### Pileup
+
+#### Install snp-pileup
+- Install HTSlib : http://www.htslib.org/download/
+- tar -xf htslib-1.11.tar.bz2
+- cd htslib-1.11
+- ./configure --prefix=/data/xyi/software/htslib-1.11
+- make
+- make install
+- g++ -std=c++11 -I /data/xyi/software/htslib-1.11/include snp-pileup.cpp -L /data/xyi/software/htslib-1.11/lib -lhts -Wl,-rpath=/data/xyi/software/htslib-1.11/lib -o snp-pileup
+
+#### Run pileup
+
+- Download dbSNP hg38 databse : wget https://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh38p7/VCF/common_all_20180418.vcf.gz
+- /data/xyi/snp-pileup common_all_20180418.vcf -q15 -Q20 -P100 -r100,0 111_112.100.facets 111.sorted.bam 112.sorted.bam
+
 Read depth and allele counts at sites of common single nucleotide variant are observed in both the tumor and normal bams based on a provided VCF. 
 
 Inputs:
